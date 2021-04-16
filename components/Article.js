@@ -114,3 +114,51 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+const articles = document.querySelector('.articles')
+
+function articleMaker(article) {
+  const info = document.createElement('div')
+  const title = document.createElement('h2')
+  const date = document.createElement('p')
+  const p1 = document.createElement('p')
+  const p2 = document.createElement('p')
+  const p3 = document.createElement('p')
+  const span = document.createElement('span')
+
+  title.textContent = article.title
+  date.textContent = article.date
+  p1.textContent = article.firstParagraph
+  p2.textContent = article.secondParagraph
+  p3.textContent = article.thirdParagraph
+ span.innerText = '+'
+
+  info.classList.add('article')
+  date.classList.add('date')
+  span.classList.add('expandButton')
+
+
+  info.appendChild(title)
+  info.appendChild(date)
+  info.appendChild(p1)
+  info.appendChild(p2)
+  info.appendChild(p3)
+  info.appendChild(span)
+  span.addEventListener('click', () => {
+    info.classList.toggle('article-open')
+   })
+  return info
+}
+
+console.log(articleMaker(data[0]))
+
+data.forEach(article => {
+  const info = articleMaker(article)
+  articles.appendChild(info)
+})
+
+let amanda = {title: 'amanda', date: 'nov 1, 1996', firstParagraph: 'coding is fun', secondParagraph: 'but also hard', thirdParagraph: 'it really do be like that tho'};
+
+data.push(amanda);
+
+console.log(articleMaker(data[4]))
